@@ -13,6 +13,9 @@ typedef struct Validate {
     char *surname;
     char *email;
     char *numsecu;
+    char *birthday;
+    char *poste;
+    char *restaurant;
 }Validate;
 
 typedef struct WindowCalendarParam{
