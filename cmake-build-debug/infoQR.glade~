@@ -170,7 +170,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="secuEntry">
+                  <object class="GtkEntry" id="SecuEntry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="margin_left">10</property>

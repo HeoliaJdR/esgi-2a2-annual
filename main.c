@@ -3,13 +3,28 @@
 #include "qrcodegen.h"
 #include <gtk/gtk.h>
 #include "function.h"
+#include "constant.h"
 
 int main(int argc,char** argv) {
     char *array = NULL;
+    char *actualEntry = NULL;
+    char **savedEntry = NULL;
+    int *entryVerification = NULL;
+
+
     GtkWidget *window;
     GtkWidget *picture;
     GtkBuilder *builder;
+    GtkWidget *entry;
     GdkPixbuf * pixbuf;
+
+// Allocation mémoire du tableau de verification des entry
+    entryVerification = malloc(sizeof(int)*7);
+    actualEntry = malloc(sizeof(char)*20);
+    savedEntry = malloc(sizeof(char)*7);
+    for(int i = 0; i < 7; i++){
+      savedEntry[i] = malloc(sizeof(char)*20);
+    }
 
     gtk_init(&argc,&argv);
     loadGladeFile(&builder,"QRCODE.glade");
