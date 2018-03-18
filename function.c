@@ -14,3 +14,9 @@ GError *loadGladeFile(GtkBuilder **builder, char *fileName) {
 
     return error;
 }
+
+void checkWorkerInfo(GtkWidget *widget, gpointer data){
+
+    puts("ok");
+
+}
