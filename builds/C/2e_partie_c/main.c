@@ -21,16 +21,20 @@ int main(int argc, char **argv){
     mkdir(directoryname);
 
     hSearch = FindFirstFile("*.xml", &File);
+    strcpy(filename,directoryname);
+    strcat(filename,"/");
+    strcat(filename,directoryname);
+    strcat(filename,".xml");
+    fp = fopen(filename,"a");
+    fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<archive>\n",fp);
+    fclose(fp);
     if (hSearch != INVALID_HANDLE_VALUE){
         do {
             printf("%s\n", File.cFileName);
             fp = fopen(File.cFileName,"rb");
-            fread(filecontent,sizeof(char),1000,fp);
+            fseek(fp,40,SEEK_SET);
+            fread(filecontent,sizeof(char),10000,fp);
             fclose(fp);
-            strcpy(filename,directoryname);
-            strcat(filename,"/");
-            strcat(filename,directoryname);
-            strcat(filename,".xml");
             filecontent[strlen(filecontent)-1]='\n';
             fp = fopen(filename,"a");
             fputs(filecontent,fp);
@@ -38,6 +42,9 @@ int main(int argc, char **argv){
         } while (FindNextFile(hSearch, &File));
 
         FindClose(hSearch);
+        fp = fopen(filename,"a");
+        fputs("</archive>",fp);
+        fclose(fp);
     }
 
     return 0;
