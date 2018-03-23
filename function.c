@@ -19,13 +19,120 @@ GError *loadGladeFile(GtkBuilder **builder, char *fileName) {
     return error;
 }
 
-void checkWorkerInfo(GtkWidget *widget, gpointer data){
+int textVerification(char *actualEntry, int *entryVerification, int positionVerif){
+    if(strlen(actualEntry) <= 20 && strlen(actualEntry) > 0){
+      return entryVerification[positionVerif] = 1;
+    }
+    else{
+      return entryVerification[positionVerif] = 0;
+    }
+}
+
+int emailVerification(char *actualEntry, int *entryVerification, int positionVerif){
+  int endVerif = 0;
+  int atVerif = 0;
+  if(strlen(actualEntry) <= 20 && strlen(actualEntry) > 0){
+    // End mail verification
+    for(int i = 0; i < 3; i++){
+      if(strpbrk(actualEntry, ".fr") != NULL){
+        endV++;
+      }
+      if(strpbrk(actualEntry, ".com") != NULL){
+        endV++;
+      }
+      if(strpbrk(actualEntry, ".eu") != NULL){
+        endV++;
+      }
+    }
+    if(strchr(actualEntry, "@") != NULL){
+      atVerif = 1;
+    }
+    if(endVerif == 3 && atVerif == 1){
+      return entryVerification[positionVerif] = 1;
+    }
+  }
+  else{
+    return entryVerification[positionVerif] = 0;
+  }
+}
+
+int dateVerification(char *actualEntry, int *entryVerification, int positionVerif){
+  if(actualEntry != NULL)
+    return entryVerification[positionVerif] = 1;
+}
+
+int secuVerification(char *actualEntry, int *entryVerification, int positionVerif){
+  if(strlen(actualEntry) == 15){
+    return entryVerification[positionVerif] = 1;
+  }
+  else{
+    return entryVerification[positionVerif] = 0;
+  }
+}
+
+int postOrRestaurantVerification(char *actualEntry, int *entryVerification, int positionVerif){
+  // Restaurant verification
+  if(positionVerif == 5){
+    if(actualEntry >= 0 && actualEntry < 7){
+      return entryVerification[positionVerif] = 1;
+    }
+    else{
+      return entryVerification[positionVerif] = 0;
+    }
+  }
+  // Post verification
+  else{
+    if(actualEntry >= 0 && actualEntry < 5){
+      return entryVerification[positionVerif] = 1;
+    }
+    else{
+      return entryVerification[positionVerif] = 0;
+    }
+  }
+}
+
+int entryVerification (int positionVerif, char *actualEntry, int *entryVerification){
+    selectEntry(actualEntry, positionVerif);
+    switch (positionVerif) {
+      case 0:
+        textVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break;
+      case 1:
+        textVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break
+      case 2:
+        dateVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break;
+      case 3:
+        secuVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break
+      case 4:
+        emailVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break;
+      case 5:
+        postOrRestaurantVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break
+      case 6:
+        postOrRestaurantVerification(actualEntry, entryVerification, positionVerif);
+        &positionVerif++;
+        break;
+    }
+}
+
+void checkWorkerInfo(GtkWidget *widget, gpointer data, int *entryVerification){
 
     GtkWidget *tempWidget;
     Validate workerInfo;
     GError *error;
     GtkWidget *window;
     GtkBuilder *builder;
+    int positionVerif = 0;
 
     /**
      * Je récupère mon champs
@@ -33,30 +140,34 @@ void checkWorkerInfo(GtkWidget *widget, gpointer data){
      */
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"SurnameEntry");
     workerInfo.surname = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
+    entryVerification(positionVerif, workerInfo.surname, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"NameEntry");
     workerInfo.name = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
+    entryVerification(positionVerif, workerInfo.name, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"BirthdayEntry");
     workerInfo.birthday = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-
-    tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"EmailEntry");
-    workerInfo.email = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
+    entryVerification(positionVerif, workerInfo.birthday, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"NumSecuEntry");
     workerInfo.numsecu = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
+    entryVerification(positionVerif, workerInfo.numsecu, entryVerification);
 
-    tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"BirthdayEntry");
-    workerInfo.birthday = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-
-    tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"PosteComboBox");
-    workerInfo.poste = (char *) gtk_combo_box_get_active_id(GTK_COMBO_BOX(tempWidget));
+    tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"EmailEntry");
+    workerInfo.email = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
+    entryVerification(positionVerif, workerInfo.email, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"RestaurantComboBox");
     workerInfo.restaurant = (char *) gtk_combo_box_get_active_id(GTK_COMBO_BOX(tempWidget));
+    entryVerification(positionVerif, workerInfo.restaurant, entryVerification);
+
+    tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"PosteComboBox");
+    workerInfo.poste = (char *) gtk_combo_box_get_active_id(GTK_COMBO_BOX(tempWidget));
+    entryVerification(positionVerif, workerInfo.poste, entryVerification);
 
 
-    if((error = loadGladeFile(&builder,"infoQrcode.glade")) == NULL){
+    if((error = loadGladeFile(&builder,"infoQrcode.glade")) == NULL && positionVerif == 7){
         window = (GtkWidget *) gtk_builder_get_object(builder,"dialog1");
 
         tempWidget = (GtkWidget *) gtk_builder_get_object(builder,"CloseButton");

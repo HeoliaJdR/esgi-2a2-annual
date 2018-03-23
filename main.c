@@ -6,6 +6,9 @@
 
 int main(int argc,char** argv) {
     char *array = NULL;
+    int *entryVerification = NULL;
+
+
     GtkWidget *window;
     GtkWidget *tempWidget;
     GtkBuilder *builder;
@@ -13,6 +16,9 @@ int main(int argc,char** argv) {
     GError *error;
     WindowCalendarParam *tempCalendarParam = NULL;
 
+    // Allocation mémoire du tableau de verification des entry
+    entryVerification = malloc(sizeof(int)*7);
+    
     gtk_init(&argc,&argv);
     if((error = loadGladeFile(&builder,"infoQR.glade")) == NULL){
         window = (GtkWidget *) gtk_builder_get_object(builder,"window1");
