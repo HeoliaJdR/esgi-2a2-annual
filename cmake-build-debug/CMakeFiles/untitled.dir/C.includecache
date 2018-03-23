@@ -4363,6 +4363,14 @@ C:/Users/rayan/Desktop/projet C annuel/function.h
 C:/Users/rayan/Desktop/projet C annuel/function.h
 gtk/gtk.h
 -
+stdlib.h
+-
+string.h
+-
+structure.h
+C:/Users/rayan/Desktop/projet C annuel/structure.h
+qrcodegen.h
+C:/Users/rayan/Desktop/projet C annuel/qrcodegen.h
 
 C:/Users/rayan/Desktop/projet C annuel/main.c
 stdio.h
@@ -4394,5 +4402,9 @@ stdbool.h
 stddef.h
 -
 stdint.h
+-
+
+C:/Users/rayan/Desktop/projet C annuel/structure.h
+gtk/gtk.h
 -
 

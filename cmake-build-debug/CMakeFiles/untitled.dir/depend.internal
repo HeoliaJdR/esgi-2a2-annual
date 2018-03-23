@@ -629,6 +629,8 @@ CMakeFiles/untitled.dir/function.c.obj
  C:/MinGW/lib/glib-2.0/include/glibconfig.h
  C:/Users/rayan/Desktop/projet C annuel/function.c
  C:/Users/rayan/Desktop/projet C annuel/function.h
+ C:/Users/rayan/Desktop/projet C annuel/qrcodegen.h
+ C:/Users/rayan/Desktop/projet C annuel/structure.h
 CMakeFiles/untitled.dir/main.c.obj
  C:/MinGW/include/_mingw.h
  C:/MinGW/include/atk-1.0/atk/atk.h
@@ -1258,6 +1260,7 @@ CMakeFiles/untitled.dir/main.c.obj
  C:/Users/rayan/Desktop/projet C annuel/function.h
  C:/Users/rayan/Desktop/projet C annuel/main.c
  C:/Users/rayan/Desktop/projet C annuel/qrcodegen.h
+ C:/Users/rayan/Desktop/projet C annuel/structure.h
 CMakeFiles/untitled.dir/qrcodegen.c.obj
  C:/MinGW/include/_mingw.h
  C:/MinGW/include/assert.h

@@ -11,6 +11,6 @@ link_directories(${GTK3_LIBRARY_DIRS})
 
 add_definitions(${GTK3_CFLAGS_OTHER})
 
-add_executable(untitled main.c qrcodegen.c function.c)
+add_executable(untitled main.c qrcodegen.c function.c structure.h)
 
 target_link_libraries(untitled ${GTK3_LIBRARIES})

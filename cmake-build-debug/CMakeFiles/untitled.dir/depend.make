@@ -628,6 +628,8 @@ CMakeFiles/untitled.dir/function.c.obj: C:/MinGW/include/wtypes.h
 CMakeFiles/untitled.dir/function.c.obj: C:/MinGW/lib/glib-2.0/include/glibconfig.h
 CMakeFiles/untitled.dir/function.c.obj: ../function.c
 CMakeFiles/untitled.dir/function.c.obj: ../function.h
+CMakeFiles/untitled.dir/function.c.obj: ../qrcodegen.h
+CMakeFiles/untitled.dir/function.c.obj: ../structure.h
 
 CMakeFiles/untitled.dir/main.c.obj: C:/MinGW/include/_mingw.h
 CMakeFiles/untitled.dir/main.c.obj: C:/MinGW/include/atk-1.0/atk/atk.h
@@ -1257,6 +1259,7 @@ CMakeFiles/untitled.dir/main.c.obj: C:/MinGW/lib/glib-2.0/include/glibconfig.h
 CMakeFiles/untitled.dir/main.c.obj: ../function.h
 CMakeFiles/untitled.dir/main.c.obj: ../main.c
 CMakeFiles/untitled.dir/main.c.obj: ../qrcodegen.h
+CMakeFiles/untitled.dir/main.c.obj: ../structure.h
 
 CMakeFiles/untitled.dir/qrcodegen.c.obj: C:/MinGW/include/_mingw.h
 CMakeFiles/untitled.dir/qrcodegen.c.obj: C:/MinGW/include/assert.h
