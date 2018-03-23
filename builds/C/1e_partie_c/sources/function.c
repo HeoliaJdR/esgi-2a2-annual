@@ -19,108 +19,107 @@ GError *loadGladeFile(GtkBuilder **builder, char *fileName) {
     return error;
 }
 
-int textVerification(char *actualEntry, int *entryVerification, int positionVerif){
+int textVerification(char *actualEntry, int *entryVerification, int *positionVerif){
     if(strlen(actualEntry) <= 20 && strlen(actualEntry) > 0){
-      return entryVerification[positionVerif] = 1;
+      return entryVerification[(*positionVerif)] = 1;
     }
     else{
-      return entryVerification[positionVerif] = 0;
+      return entryVerification[(*positionVerif)] = 0;
     }
 }
 
-int emailVerification(char *actualEntry, int *entryVerification, int positionVerif){
+int emailVerification(char *actualEntry, int *entryVerification, int *positionVerif){
   int endVerif = 0;
   int atVerif = 0;
   if(strlen(actualEntry) <= 20 && strlen(actualEntry) > 0){
     // End mail verification
     for(int i = 0; i < 3; i++){
       if(strpbrk(actualEntry, ".fr") != NULL){
-        endV++;
+        endVerif++;
       }
       if(strpbrk(actualEntry, ".com") != NULL){
-        endV++;
+        endVerif++;
       }
       if(strpbrk(actualEntry, ".eu") != NULL){
-        endV++;
+        endVerif++;
       }
     }
     if(strchr(actualEntry, "@") != NULL){
       atVerif = 1;
     }
     if(endVerif == 3 && atVerif == 1){
-      return entryVerification[positionVerif] = 1;
+      return entryVerification[(*positionVerif)] = 1;
     }
   }
   else{
-    return entryVerification[positionVerif] = 0;
+    return entryVerification[(*positionVerif)] = 0;
   }
 }
 
-int dateVerification(char *actualEntry, int *entryVerification, int positionVerif){
-  if(actualEntry != NULL)
-    return entryVerification[positionVerif] = 1;
+int dateVerification(char *actualEntry, int *entryVerification, int *positionVerif){
+  //if(actualEntry != NULL)
+  return entryVerification[(*positionVerif)] = 1;
 }
 
-int secuVerification(char *actualEntry, int *entryVerification, int positionVerif){
+int secuVerification(char *actualEntry, int *entryVerification, int *positionVerif){
   if(strlen(actualEntry) == 15){
-    return entryVerification[positionVerif] = 1;
+    return entryVerification[(*positionVerif)] = 1;
   }
   else{
-    return entryVerification[positionVerif] = 0;
+    return entryVerification[(*positionVerif)] = 0;
   }
 }
 
-int postOrRestaurantVerification(char *actualEntry, int *entryVerification, int positionVerif){
+int postOrRestaurantVerification(char *actualEntry, int *entryVerification, int *positionVerif){
   // Restaurant verification
   if(positionVerif == 5){
     if(actualEntry >= 0 && actualEntry < 7){
-      return entryVerification[positionVerif] = 1;
+      return entryVerification[(*positionVerif)] = 1;
     }
     else{
-      return entryVerification[positionVerif] = 0;
+      return entryVerification[(*positionVerif)] = 0;
     }
   }
   // Post verification
   else{
     if(actualEntry >= 0 && actualEntry < 5){
-      return entryVerification[positionVerif] = 1;
+      return entryVerification[(*positionVerif)] = 1;
     }
     else{
-      return entryVerification[positionVerif] = 0;
+      return entryVerification[(*positionVerif)] = 0;
     }
   }
 }
 
-int entryVerification (int positionVerif, char *actualEntry, int *entryVerification){
-    selectEntry(actualEntry, positionVerif);
-    switch (positionVerif) {
+int entryVerificationFunc (int *positionVerif, Validate * workerInfoSurname, Validate * workerInfoName, Validate * workerInfoSecu, Validate * workerInfoEmail, Validate * workerInfoRestaurant, Validate * workerInfoJob, int *entryVerification){
+    switch (*positionVerif) {
       case 0:
-        textVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
+        textVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
         break;
       case 1:
-        textVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
-        break
+        textVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
+        break;
       case 2:
-        dateVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
+        dateVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
         break;
       case 3:
-        secuVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
-        break
+        secuVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
+        break;
       case 4:
-        emailVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
+        emailVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
         break;
       case 5:
-        postOrRestaurantVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
-        break
+        postOrRestaurantVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
+        break;
       case 6:
-        postOrRestaurantVerification(actualEntry, entryVerification, positionVerif);
-        &positionVerif++;
+        postOrRestaurantVerification(actualEntry, entryVerification, (*positionVerif));
+        (*positionVerif)++;
         break;
     }
 }
@@ -132,7 +131,7 @@ void checkWorkerInfo(GtkWidget *widget, gpointer data, int *entryVerification){
     GError *error;
     GtkWidget *window;
     GtkBuilder *builder;
-    int positionVerif = 0;
+    int * positionVerif = 0;
 
     /**
      * Je récupère mon champs
@@ -140,39 +139,37 @@ void checkWorkerInfo(GtkWidget *widget, gpointer data, int *entryVerification){
      */
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"SurnameEntry");
     workerInfo.surname = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-    entryVerification(positionVerif, workerInfo.surname, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"NameEntry");
-    workerInfo.name = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-    entryVerification(positionVerif, workerInfo.name, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"BirthdayEntry");
     workerInfo.birthday = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-    entryVerification(positionVerif, workerInfo.birthday, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"NumSecuEntry");
     workerInfo.numsecu = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-    entryVerification(positionVerif, workerInfo.numsecu, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"EmailEntry");
     workerInfo.email = (char *) gtk_entry_get_text(GTK_ENTRY(tempWidget));
-    entryVerification(positionVerif, workerInfo.email, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"RestaurantComboBox");
     workerInfo.restaurant = (char *) gtk_combo_box_get_active_id(GTK_COMBO_BOX(tempWidget));
-    entryVerification(positionVerif, workerInfo.restaurant, entryVerification);
 
     tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(data),"PosteComboBox");
     workerInfo.poste = (char *) gtk_combo_box_get_active_id(GTK_COMBO_BOX(tempWidget));
-    entryVerification(positionVerif, workerInfo.poste, entryVerification);
-
+    entryVerificationFunc(&positionVerif, workerInfoSurname, workerInfoName, workerInfoSecu, workerInfoEmail, workerInfoRestaurant, workerInfoJob, entryVerification);
 
     if((error = loadGladeFile(&builder,"infoQrcode.glade")) == NULL && positionVerif == 7){
+        if(builder == NULL)
+          printf("error");
         window = (GtkWidget *) gtk_builder_get_object(builder,"dialog1");
-
+        if(window == NULL)
+          printf("error");
+        printf("errorchecl");
+        gtk_widget_show_all(window);
         tempWidget = (GtkWidget *) gtk_builder_get_object(builder,"CloseButton");
 
         g_signal_connect(G_OBJECT(tempWidget), "clicked", G_CALLBACK(closeDialogBox),(gpointer) window);
+        xmlManager(workerInfo.surname, workerInfo.name, workerInfo.numsecu, workerInfo.email, workerInfo.restaurant, workerInfo.poste);
 
         tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(builder),"SurnameResultLabel");
         gtk_label_set_text(GTK_LABEL(tempWidget), workerInfo.surname);
@@ -198,9 +195,7 @@ void checkWorkerInfo(GtkWidget *widget, gpointer data, int *entryVerification){
         tempWidget = (GtkWidget *) gtk_builder_get_object(GTK_BUILDER(builder),"QrcodeImage");
         qrCodeToGtkImage(tempWidget, workerInfo.numsecu);
 
-        gtk_widget_show_all(window);
 
-        gtk_main();
     }else
         puts(error->message);
 

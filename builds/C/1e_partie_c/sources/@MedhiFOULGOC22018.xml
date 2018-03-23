@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employee title="@MedhiFOULGOC22018.xml">
+	<informations>
+		<SurnameEntry>
+			FOULGOC
+		</SurnameEntry>
+		<NameEntry>
+			Medhi
+		</NameEntry>
+		<NumSecuEntry>
+			012345678912345
+		</NumSecuEntry>
+		<EmailEntry>
+			medhi@medhi.fr
+		</EmailEntry>
+		<RestaurantComboBox>
+			Bastille
+		</RestaurantComboBox>
+		<PosteComboBox>
+			Patron
+		</PosteComboBox>
+	</informations>
+</employee>

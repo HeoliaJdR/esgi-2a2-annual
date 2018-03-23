@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employee title="@TRUCTRUC22018.xml">
+	<informations>
+		<SurnameEntry>
+			TRUC
+		</SurnameEntry>
+		<NameEntry>
+			TRUC
+		</NameEntry>
+		<NumSecuEntry>
+			012345678912345
+		</NumSecuEntry>
+		<EmailEntry>
+			medhi@truc.fr
+		</EmailEntry>
+		<RestaurantComboBox>
+			Bastille
+		</RestaurantComboBox>
+		<PosteComboBox>
+			Patron
+		</PosteComboBox>
+	</informations>
+</employee>
