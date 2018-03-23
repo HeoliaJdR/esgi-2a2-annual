@@ -13,7 +13,7 @@
 #endif
 #elif defined(WIN32)
   #include <windows.h>
-  #include <dir.h>
+  #include <io.h>
 // Windows targets must have WIN32 (_WIN32)
 #endif
 
@@ -22,7 +22,7 @@
 #include "function.h"
 #include "structure.h"
 
-int xmlNode(i, workerInfoSurname, workerInfoName, workerInfoSecu, workerInfoEmail, workerInfoRestaurant, workerInfoJob, filename);
+int xmlNode(int i, Validate * workerInfoSurname, Validate * workerInfoName, Validate * workerInfoSecu, Validate * workerInfoEmail, Validate * workerInfoRestaurant, Validate * workerInfoJob, char *filename);
 
 int xmlManager(Validate * workerInfoSurname, Validate * workerInfoName, Validate * workerInfoSecu, Validate * workerInfoEmail, Validate * workerInfoRestaurant, Validate * workerInfoJob);
 

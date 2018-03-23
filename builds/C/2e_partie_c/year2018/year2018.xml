@@ -1,12 +1,46 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<archive>
-<test>
-<name>hugo</name>
-</test>
-<test>
-<name>medhi</name>
-</test>
-<test>
-<name>rayan</name>
-</test>
-</archive>
+<?xml version="1.0" encoding="UTF-8"?>
+<employee title="@MedhiFOULGOC22018.xml">
+	<informations>
+		<SurnameEntry>
+			FOULGOC
+		</SurnameEntry>
+		<NameEntry>
+			Medhi
+		</NameEntry>
+		<NumSecuEntry>
+			5161561561565161
+		</NumSecuEntry>
+		<EmailEntry>
+			med__27@hotmail.fr
+		</EmailEntry>
+		<RestaurantComboBox>
+			Bastille
+		</RestaurantComboBox>
+		<PosteComboBox>
+			Patron
+		</PosteComboBox>
+	</informations>
+</employee>  H„„„„„„„„„„‚‚‚‚‚‚ 
+<?xml version="1.0" encoding="UTF-8"?>
+<employee title="@MedhiFOULGOC22018.xml">
+	<informations>
+		<SurnameEntry>
+			FOULGOC
+		</SurnameEntry>
+		<NameEntry>
+			Medhi
+		</NameEntry>
+		<NumSecuEntry>
+			5161561561565161
+		</NumSecuEntry>
+		<EmailEntry>
+			med__27@hotmail.fr
+		</EmailEntry>
+		<RestaurantComboBox>
+			Bastille
+		</RestaurantComboBox>
+		<PosteComboBox>
+			Patron
+		</PosteComboBox>
+	</informations>
+</employee>  H„„„„„„„„„„‚‚‚‚‚‚ 

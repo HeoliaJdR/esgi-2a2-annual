@@ -35,7 +35,7 @@ int main(int argc, char **argv){
             fseek(fp,40,SEEK_SET);
             fread(filecontent,sizeof(char),10000,fp);
             fclose(fp);
-            filecontent[strlen(filecontent)-1]='\n';
+            filecontent[strlen(filecontent)]='\n';
             fp = fopen(filename,"a");
             fputs(filecontent,fp);
             fclose(fp);
