@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "qrcodegen.h"
+#include "../headers/qrcodegen.h"
 #include <gtk/gtk.h>
-#include "function.h"
+#include "../headers/function.h"
 
 int main(int argc,char** argv) {
     char *array = NULL;
@@ -18,7 +18,7 @@ int main(int argc,char** argv) {
 
     // Allocation mémoire du tableau de verification des entry
     entryVerification = malloc(sizeof(int)*7);
-    
+
     gtk_init(&argc,&argv);
     if((error = loadGladeFile(&builder,"infoQR.glade")) == NULL){
         window = (GtkWidget *) gtk_builder_get_object(builder,"window1");

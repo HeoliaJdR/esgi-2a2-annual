@@ -25,16 +25,16 @@ void closeDialogBox(GtkWidget *widget, gpointer *data);
 
 void qrCodeToGtkImage(GtkWidget **image, char *code);
 
-int textVerification(char *actualEntry, int *entryVerification, int positionVerif);
+int textVerification(char *actualEntry, int *entryVerification, int *positionVerif);
 
-int emailVerification(char *actualEntry, int *entryVerification, int positionVerif);
+int emailVerification(char *actualEntry, int *entryVerification, int *positionVerif);
 
-int dateVerification(char *actualEntry, int *entryVerification, int positionVerif);
+int dateVerification(char *actualEntry, int *entryVerification, int *positionVerif);
 
-int secuVerification(char *actualEntry, int *entryVerification, int positionVerif);
+int secuVerification(char *actualEntry, int *entryVerification, int *positionVerif);
 
-int postOrRestaurantVerification(char *actualEntry, int *entryVerification, int positionVerif);
+int postOrRestaurantVerification(char *actualEntry, int *entryVerification, int *positionVerif);
 
-int entryVerification (int positionVerif, char *actualEntry, int *entryVerification);
+int entryVerification (int *positionVerif, char *actualEntry, int *entryVerification);
 
 #endif //UNTITLED_FUNCTION_H
