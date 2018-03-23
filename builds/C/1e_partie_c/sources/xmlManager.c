@@ -1,3 +1,4 @@
+/* Created by Medhi FOULGOC 18/03/2018 */
 #include "../headers/function.h"
 
 int xmlNode(int i, Validate * workerInfo, char filename[1000]){
